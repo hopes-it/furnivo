@@ -20,10 +20,16 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainLayout></MainLayout>,
     errorElement: <ErrorPage />,
+    hydrateFallbackElement: (
+      <div className="min-h-screen flex justify-center items-center">
+        <p className="loading loading-dots loading-xl"></p>
+      </div>
+    ),
     children: [
       {
         index: true,
         Component: Home,
+        loader: () => fetch("./data.json"),
       },
       {
         path: "/products",

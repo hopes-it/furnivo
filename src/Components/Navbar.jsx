@@ -30,7 +30,7 @@ const Navbar = ({ links }) => {
             {links}
           </ul>
         </div>
-        <Link to="/" className="text-xl font-medium">
+        <Link to="/" className="text-2xl font-bold">
           Furnivo
         </Link>
       </div>
