@@ -1,11 +1,13 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link } from "react-router";
 import ProductCard from "../Components/ProductCard";
+import useProducts from "../Hooks/useProducts";
 
 const Home = () => {
-  const products = useLoaderData();
+  const { products, loading, error } = useProducts();
   const featureProducts = products.slice(0, 6);
   // console.log(data);
+
   return (
     <div>
       <div className="flex justify-between py-5 items-center">
