@@ -5,6 +5,7 @@ import Products from "../Pages/Products";
 import MainLayout from "../Layouts/MainLayout";
 import ErrorPage from "../Pages/ErrorPage";
 import WishList from "../Pages/WishList";
+import ProductDetails from "../Pages/ProductDetails";
 
 // named export if many are export, import like { router, routes }
 // export const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/wish-list",
         element: <WishList />,
+      },
+      {
+        path: "/product/:id",
+        element: <ProductDetails />,
       },
     ],
   },
