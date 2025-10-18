@@ -10,7 +10,25 @@ const ProductDetails = () => {
   const filterProducts = products?.find((product) => product.id === Number(id));
   if (loading) return <p>Loading...</p>;
   const { name, image, category, price, description } = filterProducts;
-  console.log(filterProducts);
+  // console.log(filterProducts);
+
+  const handleAddToWishlist = () => {
+    const existingList = JSON.parse(localStorage.getItem("wishlist"));
+    let updateList = [];
+    if (existingList) {
+      // also do by find, includes
+      const isDuplicate = existingList.some(
+        (product) => product.id === filterProducts.id
+      );
+      if (isDuplicate) return alert("Already added!");
+      updateList = [...existingList, filterProducts];
+    } else {
+      updateList.push(filterProducts);
+    }
+    console.log(updateList);
+    localStorage.setItem("wishlist", JSON.stringify(updateList));
+  };
+
   return (
     <div className="card bg-base-100 border shadow-sm">
       <figure className="h-96 overflow-hidden">
@@ -22,7 +40,9 @@ const ProductDetails = () => {
         <p>Category: {category}</p>
         <p>Price: ${price}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-outline">Add to Wishlist</button>
+          <button onClick={handleAddToWishlist} className="btn btn-outline">
+            Add to Wishlist
+          </button>
         </div>
       </div>
     </div>
