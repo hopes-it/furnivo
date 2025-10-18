@@ -9,7 +9,7 @@ const useProducts = () => {
   useEffect(() => {
     setLoading(true);
 
-    axios("./data.json")
+    axios("../data.json")
       .then((data) => setProducts(data.data))
       .catch((err) => setError(err))
       .finally(() => {
