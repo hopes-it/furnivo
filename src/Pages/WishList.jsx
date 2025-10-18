@@ -20,6 +20,14 @@ const WishList = () => {
     }
   })();
 
+  const handleRemoveFromWishlist = (id) => {
+    const existingList = JSON.parse(localStorage.getItem("wishlist"));
+    let updateList = existingList.filter((product) => product.id !== id);
+
+    localStorage.setItem("wishlist", JSON.stringify(updateList));
+    setWishlist(updateList);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between py-5 items-center">
@@ -57,11 +65,18 @@ const WishList = () => {
             </figure>
             <div className="card-body">
               <h2 className="card-title">{product.name}</h2>
-              <p className="text-base-content/70">{product.description}</p>
+              <p className="text-base-content/70">{product.category}</p>
             </div>
             <div className="pr-4 flex justify-between items-center gap-3">
               <div className="text-xl font-semibold">${product.price}</div>
-              <button className="btn btn-outline">Remove</button>
+              <button
+                onClick={() => {
+                  handleRemoveFromWishlist(product.id);
+                }}
+                className="btn hover:bg-red-600 text-white bg-red-500"
+              >
+                Remove
+              </button>
             </div>
           </div>
         ))}
